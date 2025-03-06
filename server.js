@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+app.get('/', (req, res) => { res.send('It is working man!') })
 app.post('/signin', (req, res) => { signin.handleSignIn(req, res, knex, bCrypt) })
 app.post('/register', (req, res) => { register.handleRegister(req, res, knex, bCrypt) })
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, knex) })
@@ -32,6 +33,6 @@ app.put('/image', (req, res) => { image.handleImage(req, res, knex) })
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
 
-app.listen(3001, ()=> {
-	console.log('app is running on port 3001');
+app.listen(process.env.PORT || 3000, ()=> {
+	console.log(`app is running on port ${process.env.PORT}`);
 })
